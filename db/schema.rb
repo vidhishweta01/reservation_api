@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_161210) do
+ActiveRecord::Schema.define(version: 2021_10_12_181725) do
 
   create_table "bookings", force: :cascade do |t|
-    t.boolean "cancelled"
+    t.boolean "cancelled", default: false
     t.datetime "booking_time"
     t.integer "spa_n_salon_id", null: false
     t.integer "user_id", null: false
