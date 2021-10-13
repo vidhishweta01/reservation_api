@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSpaNSalons < ActiveRecord::Migration[6.1]
   def change
     create_table :spa_n_salons do |t|

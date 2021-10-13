@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class SpaNSalon < ApplicationRecord
-  validates_presence_of :companyName, :GSTIN, :PAN, :address, :available_chairs
-  validates :GSTIN, length: { minimum: 15, maximum: 15 }
-  validates :PAN, length: {minimum: 10, maximum: 10}
-  belongs_to :user
+  validates_presence_of :companyName, :address, :available_chairs
+  belongs_to :owner
   has_many :bookings
-  has_many :users, :through => :bookings
+  has_many :users, through: :bookings
   has_many :services
   has_many :work_schedules
 end

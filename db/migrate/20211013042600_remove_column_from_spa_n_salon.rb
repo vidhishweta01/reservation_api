@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveColumnFromSpaNSalon < ActiveRecord::Migration[6.1]
   def change
     remove_column :spa_n_salons, :GSTIN, :string

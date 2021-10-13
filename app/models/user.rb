@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
   validates :email, presence: true, format: { with: /\A(.+)@(.+)\z/, message: 'Email invalid' },
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   }
   validates_presence_of :contact_no
   has_many :bookings
-  has_many :spa_n_salon, :through => :bookings
-  has_many :services, :through => :bookings
+  has_many :spa_n_salon, through: :bookings
+  has_many :services, through: :bookings
   has_one :owner
 end
