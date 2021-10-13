@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :owners
   resources :users do
     resources :bookings
     resources :spa_n_salons do

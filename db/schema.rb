@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_181725) do
+ActiveRecord::Schema.define(version: 2021_10_13_045823) do
 
   create_table "bookings", force: :cascade do |t|
     t.boolean "cancelled", default: false
@@ -20,9 +20,20 @@ ActiveRecord::Schema.define(version: 2021_10_12_181725) do
     t.integer "service_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner_id"
+    t.index ["owner_id"], name: "index_bookings_on_owner_id"
     t.index ["service_id"], name: "index_bookings_on_service_id"
     t.index ["spa_n_salon_id"], name: "index_bookings_on_spa_n_salon_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "GSTIN"
+    t.string "PAN"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_owners_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -37,14 +48,12 @@ ActiveRecord::Schema.define(version: 2021_10_12_181725) do
 
   create_table "spa_n_salons", force: :cascade do |t|
     t.string "companyName"
-    t.string "GSTIN"
-    t.string "PAN"
     t.string "address"
     t.integer "available_chairs"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_spa_n_salons_on_user_id"
+    t.integer "owner_id"
+    t.index ["owner_id"], name: "index_spa_n_salons_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_10_12_181725) do
   add_foreign_key "bookings", "services"
   add_foreign_key "bookings", "spa_n_salons"
   add_foreign_key "bookings", "users"
+  add_foreign_key "owners", "users"
   add_foreign_key "services", "spa_n_salons"
-  add_foreign_key "spa_n_salons", "users"
   add_foreign_key "work_schedules", "spa_n_salons"
 end
