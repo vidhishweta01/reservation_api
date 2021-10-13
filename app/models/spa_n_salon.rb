@@ -7,8 +7,4 @@ class SpaNSalon < ApplicationRecord
   has_many :users, through: :bookings
   has_many :services
   has_many :work_schedules
-
-  def slot
-    p self.service
-  end
 end

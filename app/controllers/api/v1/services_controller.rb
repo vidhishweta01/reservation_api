@@ -20,6 +20,7 @@ module Api
 
       # POST /services
       def create
+        p "creating"
         @service = Service.new(service_params)
 
         if @service.save

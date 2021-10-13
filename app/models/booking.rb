@@ -10,11 +10,13 @@ class Booking < ApplicationRecord
   scope :future, -> { where('booking_time > ?', Date.today).order(:booking_time) }
   # scope :day, -> {where(DayName(Date('booking_time')))}
   # scope :time, -> {}
+  
+  # def available_slots(service_id)
+  #   # array = Booked_Slot()
 
-  def available_slots(service_id)
-    array = Booked_Slot()
-    spa = Service.where(id: service_id).pluck(:spa_n_salon_id)
-    work_start_time = WorkSchedule(where(spa_n_salon_id: spa, day: DayName(Date(booking_time))).pluck(:start_time))
-    work_end_time = WorkSchedule(where(spa_n_salon_id: spa, day: DayName(Date(booking_time))).pluck(:end_time))
-  end
+  #   spa = Service.where(id: service_id).pluck(:spa_n_salon_id)[0]
+  #   work_start_time = WorkSchedule(where(spa_n_salon_id: spa, day: DayName(Date(booking_time))).pluck(:start_time))[0]
+  #   work_end_time = WorkSchedule(where(spa_n_salon_id: spa, day: DayName(Date(booking_time))).pluck(:end_time))[0]
+  #   duration = Service.where(id: service_id).pluck(:duration)[0]
+  # end
 end
