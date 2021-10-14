@@ -70,32 +70,50 @@
 
 
     <div class=" text-white p-3">
-    <h6> & Items examples</h6>
+    <h6>Bookings or Services or Salon</h6>
     <pre>
-        url: <a href="https://boiling-citadel-97580.herokuapp.com/v1/todos">BaseUrl//</a><br/>
+        url: <a href="https://boiling-citadel-97580.herokuapp.com/v1/s">BaseUrl//</a><br/>
         method: 'get',<br>
-        data: {<br/>
-            user_id: 1,<br/>
-            title: "ExampleTitle",<br/>
-            created_by: "ExampleNoOne"<br/>
+        data: []
+        response: [<br/>
+        {
+        "id": 1,<br/>
+        "name": "haircut",<br/>
+        "cost": 200.0,<br/>
+        "duration": 0.5,<br/>
+        "spa_n_salon_id": 3,<br/>
+        "created_at": "2021-10-13T14:10:41.254Z",<br/>
+        "updated_at": "2021-10-13T14:10:41.254Z"<br/>
+    }, <br/>
+    {<br/>
+        "id": 2,<br/>
+        "name": "haircut",<br/>
+        "cost": 200.0,<br/>
+        "duration": 0.5,<br/>
+        "spa_n_salon_id": 2,<br/>
+        "created_at": "2021-10-13T14:11:14.903Z",<br/>
+        "updated_at": "2021-10-13T14:11:14.903Z"<br/>
         }<br/>
-
+        ]
         header {<br/>
             token: tokenExample,<br/>
         }<br/>
-
-        response: []
+]
 
     </pre>
     <hr class="bg-white">
     <pre>
-        url: <a href="https://boiling-citadel-97580.herokuapp.com/api/v1/registeration">BaseUrl/todos/:todo_id/items</a><br/>
-        method: 'get',<br>
+        url: <a href="https://boiling-citadel-97580.herokuapp.com/api/v1/">BaseUrl/owners/</a><br/>
+        method: 'post',<br>
+        data: {<br/>
+        GSTIN: "16 charaters alphanumeric credential"
+        PAN: "10 charaters alphanumeric credential"
+        user_id: "logged in user id"
+        }
         header {<br/>
             token: tokenExample,<br/>
         }<br/>
         response: []
-
     </pre>
     </div>
   </main>
