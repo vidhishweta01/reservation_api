@@ -13,12 +13,12 @@ module Api
 
       # GET /owners/1
       def show
-        render json: @owner, status: :ok
+        revenue_gen = revenue
+        render json: { owner: @owner, revenue: revenue_gen }, status: :ok
       end
 
       # POST /owners
       def create
-        puts 'I m here'
         @owner = Owner.new(owner_params)
 
         if @owner.save
@@ -35,6 +35,15 @@ module Api
         else
           render json: @owner.errors, status: :unprocessable_entity
         end
+      end
+
+      def revenue
+        bookings = Booking.where(owner_id: @owner.id, cancelled: false).pluck(:service_id)
+        cost = 0
+        bookings.each do |book|
+          cost += Service.where(id: book).pick(:cost)
+        end
+        return cost
       end
 
       # DELETE /owners/1

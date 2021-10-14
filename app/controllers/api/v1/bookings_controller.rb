@@ -4,7 +4,6 @@ module Api
       before_action :auth
       before_action :set_booking, only: %i[show update destroy]
 
-      @slot = []
       # GET /bookings
       def index
         @bookings = current_user.booking.all if current_user
