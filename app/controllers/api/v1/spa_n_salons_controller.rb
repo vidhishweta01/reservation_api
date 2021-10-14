@@ -19,43 +19,30 @@ module Api
 
       # POST /spa_n_salons
       def create
-        if owner_is_correct?
-          @spa_n_salon = SpaNSalon.new(spa_n_salon_params)
-          if @spa_n_salon.save
-            render json: @spa_n_salon, status: :ok
-          else
-            render json: @spa_n_salon.errors, status: :unprocessable_entity
-          end
+        @spa_n_salon = SpaNSalon.new(spa_n_salon_params)
+        if @spa_n_salon.save
+          render json: @spa_n_salon, status: :ok
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: @spa_n_salon.errors, status: :unprocessable_entity
         end
       end
 
       # PATCH/PUT /spa_n_salons/1
       def update
-        if owner_is_correct?
-          if @spa_n_salon.update(spa_n_salon_params)
-            render json: @spa_n_salon
-          else
-            render json: @spa_n_salon.errors, status: :unprocessable_entity
-          end
+        if @spa_n_salon.update(spa_n_salon_params)
+          render json: @spa_n_salon
         else
-          render json: { message: "unauthorized owner "}, status: :ok
-        end
-        
+          render json: @spa_n_salon.errors, status: :unprocessable_entity
+        end        
       end
 
       # DELETE /spa_n_salons/1
       def destroy
-        if owner_is_correct?
-          if @spa_n_salon.destroy
-            render json: { message: 'deleted successfully' }, status: :ok
-          else
-            render json: @spa_n_salon.errors, status: :unprocessable_entity
-          end 
+        if @spa_n_salon.destroy
+          render json: { message: 'deleted successfully' }, status: :ok
         else
-          render json: { message: "unauthorized owner "}, status: :ok
-        end
+          render json: @spa_n_salon.errors, status: :unprocessable_entity
+        end 
       end
 
       def sorted_service
@@ -69,13 +56,6 @@ module Api
       # Use callbacks to share common setup or constraints between actions.
       def set_spa_n_salon
         @spa_n_salon = SpaNSalon.find(params[:id])
-      end
-
-      def owner_is_correct?
-        if current_user
-          return true if Owner.where(user_id: current_user.id)
-        end
-        false
       end
 
       # Only allow a list of trusted parameters through.
