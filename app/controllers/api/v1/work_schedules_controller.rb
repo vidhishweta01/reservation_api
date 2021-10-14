@@ -26,9 +26,8 @@ module Api
             render json: @work_schedule.errors, status: :unprocessable_entity
           end
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: { message: 'unauthorized owner ' }, status: :ok
         end
-        
       end
 
       # PATCH/PUT /work_schedules/1
@@ -40,7 +39,7 @@ module Api
             render json: @work_schedule.errors, status: :unprocessable_entity
           end
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: { message: 'unauthorized owner ' }, status: :ok
         end
       end
 
@@ -53,7 +52,7 @@ module Api
             render json: @work_schedule.errors, status: :unprocessable_entity
           end
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: { message: 'unauthorized owner ' }, status: :ok
         end
       end
 
@@ -63,13 +62,13 @@ module Api
       def set_work_schedule
         @work_schedule = WorkSchedule.find(params[:id])
       end
-      
+
       def owner_is_correct?
         spa_id = params[:spa_n_salon_id]
         @owner = SpaNSalon.where(id: spa_id).pluck(:owner_id)
         if current_user
-          @current_owner = Owner.where(user_id: current_user.id) 
-          return true if (@owner == @current_owner)  
+          @current_owner = Owner.where(user_id: current_user.id)
+          return true if @owner == @current_owner
         end
         false
       end

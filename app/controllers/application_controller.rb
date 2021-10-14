@@ -32,8 +32,9 @@ class ApplicationController < ActionController::API
   end
 
   # rubocop:enable Style/GuardClause
-  def working_dayTime
-    work_hour = SpaNSalon.joins('INNER JOIN Work_schedules on spa_n_salons.id = work_schedules.spa_n_salon_id').select('spa_n_salons.id, day, start_time, end_time ')
+  def working_day_time
+    SpaNSalon.joins('INNER JOIN Work_schedules on spa_n_salons.id = work_schedules.spa_n_salon_id')
+      .select('spa_n_salons.id, day, start_time, end_time ')
   end
 
   def encrypt(payload)

@@ -33,7 +33,7 @@ module Api
           render json: @spa_n_salon
         else
           render json: @spa_n_salon.errors, status: :unprocessable_entity
-        end        
+        end
       end
 
       # DELETE /spa_n_salons/1
@@ -42,11 +42,12 @@ module Api
           render json: { message: 'deleted successfully' }, status: :ok
         else
           render json: @spa_n_salon.errors, status: :unprocessable_entity
-        end 
+        end
       end
 
       def sorted_service
-        @salon = SpaNSalon.joins('INNER JOIN Services on spa_n_salons.id = services.spa_n_salon_id').select('*').order('cost asc')
+        @salon = SpaNSalon.joins('INNER JOIN Services on spa_n_salons.id = services.spa_n_salon_id')
+          .select('*').order('cost asc')
 
         render json: @salon
       end

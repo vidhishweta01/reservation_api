@@ -42,7 +42,7 @@ module Api
         bookings.each do |book|
           cost += Service.where(id: book).pick(:cost)
         end
-        return cost
+        cost
       end
 
       def loss
@@ -51,8 +51,9 @@ module Api
         bookings.each do |book|
           cost += Service.where(id: book).pick(:cost)
         end
-        return cost
+        cost
       end
+
       # DELETE /owners/1
       def destroy
         if @owner.destroy

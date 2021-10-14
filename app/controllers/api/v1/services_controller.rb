@@ -19,14 +19,14 @@ module Api
       # POST /services
       def create
         if owner_is_correct?
-          @service = Service.new(service_params) 
+          @service = Service.new(service_params)
           if @service.save
             render json: @service, status: :ok
           else
             render json: @service.errors, status: :unprocessable_entity
           end
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: { message: 'unauthorized owner ' }, status: :ok
         end
       end
 
@@ -39,21 +39,20 @@ module Api
             render json: @service.errors, status: :unprocessable_entity
           end
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: { message: 'unauthorized owner ' }, status: :ok
         end
-        
       end
 
       # DELETE /services/1
       def destroy
         if owner_is_correct?
           if @service.destroy
-            render json: { message: "deleted successfully"}
+            render json: { message: 'deleted successfully' }
           else
             render json: @service.errors, status: :unprocessable_entity
           end
         else
-          render json: { message: "unauthorized owner "}, status: :ok
+          render json: { message: 'unauthorized owner ' }, status: :ok
         end
       end
 
@@ -61,7 +60,8 @@ module Api
         @slot = []
         duration = @service.duration
         chairs = SpaNSalon.where(id: @service.spa_n_salon_id).pick(:available_chairs)
-        service_schedule = WorkSchedule.where(spa_n_salon_id: @service.spa_n_salon_id).pluck(Arel.sql('Time(start_time), Time(end_time), day'))
+        service_schedule = WorkSchedule.where(spa_n_salon_id: @service.spa_n_salon_id)
+          .pluck(Arel.sql('Time(start_time), Time(end_time), day'))
         service_schedule.each do |day|
           difference = (day[1].to_f - day[0].to_f) / duration
           @slot << { service: @service.name, day: day[2], start_time: day[0], end_time: day[1], slots: difference,
@@ -76,13 +76,13 @@ module Api
       def set_service
         @service = Service.find(params[:id])
       end
-      
+
       def owner_is_correct?
         spa_id = params[:spa_n_salon_id]
         @owner = SpaNSalon.where(id: spa_id).pluck(:owner_id)
         if current_user
-          @current_owner = Owner.where(user_id: current_user.id) 
-          return true if (@owner == @current_owner)  
+          @current_owner = Owner.where(user_id: current_user.id)
+          return true if @owner == @current_owner
         end
         false
       end
