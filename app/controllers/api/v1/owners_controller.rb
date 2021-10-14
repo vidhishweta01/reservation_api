@@ -13,8 +13,7 @@ module Api
 
       # GET /owners/1
       def show
-        revenue_gen = revenue
-        render json: { owner: @owner, revenue: revenue_gen }, status: :ok
+        render json: { owner: @owner, revenue: revenue, loss: loss }, status: :ok
       end
 
       # POST /owners
@@ -46,6 +45,14 @@ module Api
         return cost
       end
 
+      def loss
+        bookings = Booking.where(owner_id: @owner.id, cancelled: true).pluck(:service_id)
+        cost = 0
+        bookings.each do |book|
+          cost += Service.where(id: book).pick(:cost)
+        end
+        return cost
+      end
       # DELETE /owners/1
       def destroy
         if @owner.destroy
