@@ -8,7 +8,6 @@ class CreateSpaNSalons < ActiveRecord::Migration[6.1]
       t.string :PAN
       t.string :address
       t.integer :available_chairs
-      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
