@@ -1,4 +1,4 @@
-class Createbooking < ActiveRecord::Migration[6.1]
+class Createbookings < ActiveRecord::Migration[6.1]
   def change
     create_table :bookings do |t|
       t.boolean :cancelled
