@@ -79,7 +79,7 @@ module Api
 
       def owner_is_correct?
         spa_id = params[:spa_n_salon_id]
-        @owner = SpaNSalon.where(id: spa_id).pluck(:owner_id)
+        @owner = SpaNSalon.where(id: spa_id).pick(:owner_id)
         if current_user
           @current_owner = Owner.where(user_id: current_user.id)
           return true if @owner == @current_owner
