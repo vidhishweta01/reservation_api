@@ -11,10 +11,12 @@ Rails.application.routes.draw do
       get 'sorted_service', to: 'spa_n_salons#sorted_service'
       resources :bookings
       resources :spa_n_salons, only: [:index, :show]
+      resources :services, only: [:index, :show]
       resources :owners do
+        resources :spa_n_salons, only: [:create, :update, :destroy]
         resources :spa_n_salons do
           resources :work_schedule
-          resources :services
+          resources :services, only: [:create, :update, :destroy]
         end
       end
     end

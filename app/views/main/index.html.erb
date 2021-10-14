@@ -33,14 +33,16 @@
     <hr class="bg-white">
     <span class="lead text-white">
        BaseUrl:
-      <a href="https://secure-ocean-64470.herokuapp.com/api/v1/">"https://secure-ocean-64470.herokuapp.com/api/v1/"</a>
+      <a href="https://boiling-citadel-97580.herokuapp.com/api/v1/">"https://boiling-citadel-97580.herokuapp.com/api/v1/"</a>
     </span>
     <div class=" text-white p-3">
     <h6>Login & register example</h6>
     <pre>
-        url: <a href="https://secure-ocean-64470.herokuapp.com/api/v1/registeration">BaseUrl/registeration</a><br/>
+        url: <a href="https://boiling-citadel-97580.herokuapp.com/api/v1/registeration">BaseUrl/registeration</a><br/>
         method: 'post',<br>
         data: {<br/>
+            name: "shweta",
+            contact_no: "9876543210"
             email: "example@gmail.com",<br/>
             passowrd: "Example0011$$&&",<br/>
             password_confirmation: "Example0011$$&&"<br/>
@@ -52,7 +54,7 @@
     </pre>
     <hr class="bg-white">
     <pre>
-        url: <a href="https://secure-ocean-64470.herokuapp.com/api/v1/registeration">BaseUrl/login</a><br/>
+        url: <a href="https://boiling-citadel-97580.herokuapp.com/api/v1/registeration">BaseUrl/login</a><br/>
         method: 'post',<br>
         data: {<br/>
             email: "example@gmail.com",<br/>
@@ -68,9 +70,9 @@
 
 
     <div class=" text-white p-3">
-    <h6>Todos & Items examples</h6>
+    <h6> & Items examples</h6>
     <pre>
-        url: <a href="https://secure-ocean-64470.herokuapp.com/v1/todos">BaseUrl/todos/</a><br/>
+        url: <a href="https://boiling-citadel-97580.herokuapp.com/v1/todos">BaseUrl//</a><br/>
         method: 'get',<br>
         data: {<br/>
             user_id: 1,<br/>
@@ -87,7 +89,7 @@
     </pre>
     <hr class="bg-white">
     <pre>
-        url: <a href="https://secure-ocean-64470.herokuapp.com/api/v1/registeration">BaseUrl/todos/:todo_id/items</a><br/>
+        url: <a href="https://boiling-citadel-97580.herokuapp.com/api/v1/registeration">BaseUrl/todos/:todo_id/items</a><br/>
         method: 'get',<br>
         header {<br/>
             token: tokenExample,<br/>
