@@ -2,7 +2,7 @@
 Resevation_app is a Rest API with JWT-TOKEN authentication user can sign in and do any of the CRUD operations for all model.
 It can be used as a back end salon Reservation front end.
 
-[E-R Digram](./Docs/ER.png)
+[E-R Digram](./docs/ER.png)
 
 [Routes](./routes/routes.pdf)
 
