@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,74 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_013_045_823) do
-  create_table 'bookings', force: :cascade do |t|
-    t.boolean 'cancelled', default: false
-    t.datetime 'booking_time'
-    t.integer 'spa_n_salon_id', null: false
-    t.integer 'user_id', null: false
-    t.integer 'service_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'owner_id'
-    t.index ['owner_id'], name: 'index_bookings_on_owner_id'
-    t.index ['service_id'], name: 'index_bookings_on_service_id'
-    t.index ['spa_n_salon_id'], name: 'index_bookings_on_spa_n_salon_id'
-    t.index ['user_id'], name: 'index_bookings_on_user_id'
+ActiveRecord::Schema.define(version: 2021_10_13_045823) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.boolean "cancelled", default: false
+    t.datetime "booking_time"
+    t.integer "spa_n_salon_id", null: false
+    t.integer "user_id", null: false
+    t.integer "service_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner_id"
+    t.index ["owner_id"], name: "index_bookings_on_owner_id"
+    t.index ["service_id"], name: "index_bookings_on_service_id"
+    t.index ["spa_n_salon_id"], name: "index_bookings_on_spa_n_salon_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table 'owners', force: :cascade do |t|
-    t.string 'GSTIN'
-    t.string 'PAN'
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_owners_on_user_id'
+  create_table "owners", force: :cascade do |t|
+    t.string "GSTIN"
+    t.string "PAN"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_owners_on_user_id"
   end
 
-  create_table 'services', force: :cascade do |t|
-    t.string 'name'
-    t.float 'cost'
-    t.float 'duration'
-    t.integer 'spa_n_salon_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['spa_n_salon_id'], name: 'index_services_on_spa_n_salon_id'
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.float "cost"
+    t.float "duration"
+    t.integer "spa_n_salon_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spa_n_salon_id"], name: "index_services_on_spa_n_salon_id"
   end
 
-  create_table 'spa_n_salons', force: :cascade do |t|
-    t.string 'companyName'
-    t.string 'address'
-    t.integer 'available_chairs'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'owner_id'
-    t.index ['owner_id'], name: 'index_spa_n_salons_on_owner_id'
+  create_table "spa_n_salons", force: :cascade do |t|
+    t.string "companyName"
+    t.string "address"
+    t.integer "available_chairs"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner_id"
+    t.index ["owner_id"], name: "index_spa_n_salons_on_owner_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.string 'contact_no'
-    t.string 'password_digest'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "contact_no"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'work_schedules', force: :cascade do |t|
-    t.string 'day'
-    t.time 'start_time'
-    t.time 'end_time'
-    t.integer 'spa_n_salon_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['spa_n_salon_id'], name: 'index_work_schedules_on_spa_n_salon_id'
+  create_table "work_schedules", force: :cascade do |t|
+    t.string "day"
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "spa_n_salon_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spa_n_salon_id"], name: "index_work_schedules_on_spa_n_salon_id"
   end
 
-  add_foreign_key 'bookings', 'services'
-  add_foreign_key 'bookings', 'spa_n_salons'
-  add_foreign_key 'bookings', 'users'
-  add_foreign_key 'owners', 'users'
-  add_foreign_key 'services', 'spa_n_salons'
-  add_foreign_key 'work_schedules', 'spa_n_salons'
+  add_foreign_key "bookings", "services"
+  add_foreign_key "bookings", "spa_n_salons"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "owners", "users"
+  add_foreign_key "services", "spa_n_salons"
+  add_foreign_key "work_schedules", "spa_n_salons"
 end
