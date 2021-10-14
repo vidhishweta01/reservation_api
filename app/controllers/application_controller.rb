@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::API
-  SECRETS = 'my$ecretK3y'
+  SECRETS = 'my$ecretK3y'.freeze
 
   def user?(user)
     if user
@@ -33,13 +31,10 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def owner_is_correct(spa_id)
-    spa_id = params[:spa_n_salon_id]
-    @owner = SpaNSalons.where(id: spa_id).pluck(:owner_id)
-    @current_owner = current_user.owner if current_user
-    @owner == @current_owner
-  end
   # rubocop:enable Style/GuardClause
+  def working_dayTime
+    work_hour = SpaNSalon.joins('INNER JOIN Work_schedules on spa_n_salons.id = work_schedules.spa_n_salon_id').select('spa_n_salons.id, day, start_time, end_time ')
+  end
 
   def encrypt(payload)
     JWT.encode payload, SECRETS, 'HS256'

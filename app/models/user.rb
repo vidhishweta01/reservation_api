@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   has_secure_password
   validates :email, presence: true, format: { with: /\A(.+)@(.+)\z/, message: 'Email invalid' },
@@ -7,7 +5,7 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, length: { within: 6..40 }, on: :create, format:
   {
     with: /([a-zA-Z]+\d+\D+)/,
-    message: 'must be at least 6 characters and include one number and one letter.',
+    message: 'must be at least 6 characters and include one number and one letter and special symbol.',
     multiline: true
   }
   validates_presence_of :contact_no

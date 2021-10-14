@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SpaNSalon < ApplicationRecord
   validates_presence_of :companyName, :address, :available_chairs
   belongs_to :owner
