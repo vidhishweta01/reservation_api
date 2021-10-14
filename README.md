@@ -10,7 +10,7 @@ It can be used as a back end salon Reservation front end.
 - rails API
 
 ## Live link
- [API link](https://boiling-citadel-97580.herokuapp.com/).
+ [API link](https://registeration-app.herokuapp.com/).
 
 ## Getting Started
 To get a local copy up and running follow these simple example steps on the command line.
