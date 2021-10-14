@@ -60,11 +60,12 @@ module Api
       def available_slot
         @slot = []
         duration = @service.duration
+        chairs = SpaNSalon.where(id: @service.spa_n_salon_id).pick(:available_chairs)
         service_schedule = WorkSchedule.where(spa_n_salon_id: @service.spa_n_salon_id).pluck(Arel.sql('Time(start_time), Time(end_time), day'))
         service_schedule.each do |day|
           difference = (day[1].to_f - day[0].to_f) / duration
           @slot << { service: @service.name, day: day[2], start_time: day[0], end_time: day[1], slots: difference,
-                     duration_per_slot: "#{duration} hours" }
+                     duration_per_slot: "#{duration} hours", total_customer_per_slot: chairs }
         end
         render json: @slot
       end

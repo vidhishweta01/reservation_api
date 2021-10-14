@@ -7,10 +7,6 @@ module Api
       # GET /spa_n_salons
       def index
         @spa_n_salons = SpaNSalon.all
-        @service = []
-        @spa_n_salons.each do |salon|
-          @service << salon.services.order('cost asc')
-        end
         render json: @spa_n_salons
       end
 
